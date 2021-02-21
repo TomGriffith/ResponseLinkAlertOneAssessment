@@ -1,0 +1,14 @@
+<div class="item-container" *ngFor="let item in cart.items">
+  <img src="" class="item-preview" />
+  <div class="item-right-content">
+    <div class="item-title">{{item.title}}</div>
+    <div class="item-quantity">
+      <label for="quantity">Item Quantity</label>
+      <input type="number" id="quantity" [(value)]="item.quantity" />
+    </div>
+    <div class="item-cost">{{item.cost}} each</div>
+    <div class="item-total">{{item.cost * item.quantity}}</div>
+  </div>
+</div>
+
+<input type="button" (onclick)="toShipping_Click()" value="Continue to Shipping Info" />
