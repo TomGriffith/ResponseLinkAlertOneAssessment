@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
+* {
+    font-family: Calibri;
+}
 a {
   color: #0366d6;
 }
@@ -13,4 +16,12 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+h1 {
+    color: forestgreen;
+}
+
+h2 {
+    margin-top: 1em;
 }
