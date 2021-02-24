@@ -1,0 +1,64 @@
+<div>
+  <div class="row">
+    <span class="col">
+      <label for="{{addressType + '-'}}address1" class="form-label">Address</label>
+      <br />
+      <input type="text"
+             class="form-control"
+             id="{{addressType + '-'}}address1"
+             [(ngModel)]="address.addr1"
+             [disabled]="disabled" />
+    </span>
+  </div>
+  <div class="row">
+    <span class="col">
+      <label for="{{addressType + '-'}}address2" class="form-label">Address 2</label>
+      <br />
+      <input type="text"
+             class="form-control"
+             id="{{addressType + '-'}}address2"
+             [(ngModel)]="address.addr2"
+             [disabled]="disabled" />
+    </span>
+  </div>
+  <div class="row">
+    <span class="col">
+      <label for="{{addressType + '-'}}city" class="form-label">City</label>
+      <br />
+      <input type="text"
+             class="form-control"
+             id="{{addressType + '-'}}city"
+             [(ngModel)]="address.city"
+             [disabled]="disabled" />
+    </span>
+    <span class="col">
+      <label for="{{addressType + '-'}}state" class="form-label">State</label>
+      <br />
+      <select name="billingState"
+              class="form-control"
+              id="{{addressType + '-'}}state"
+              [(ngModel)]="state"
+              [disabled]="disabled">
+        <ng-container *ngFor="let state of states">
+          <option [value]="state"
+                  [label]="address.state">
+            {{state}}
+          </option>
+        </ng-container>
+      </select>
+    </span>
+    <span class="col">
+      <label for="{{addressType + '-'}}zip" class="form-label">Zip Code</label>
+      <br />
+      <input type="text"
+             class="form-control"
+             maxlength="5"
+             id="{{addressType + '-'}}zip"
+             [(ngModel)]="address.zip"
+             [disabled]="disabled" />
+    </span>
+  </div>
+
+</div>
+
+

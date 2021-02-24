@@ -1,0 +1,35 @@
+/* Cart item specific CSS */
+.item-container {
+  border-bottom: 1px dashed #cdcdcd;
+}
+
+  .item-container .item-preview {
+    align-self: center;
+  }
+
+    .item-container .item-preview:hover {
+      transform: scale(2);
+      z-index: 2;
+    }
+
+  .item-container .item-name {
+    font: Calibri;
+    font-size: large;
+    font-weight: bold;
+    color: forestgreen;
+  }
+
+  .item-container .item-description {
+    color: #404040;
+    font-size: medium;
+  }
+
+  .item-container .item-quantity {
+    width: 60px;
+    display: inline;
+  }
+
+  .item-container .remove-button-container {
+    text-align: right;
+  }
+/* End Cart item specific CSS */

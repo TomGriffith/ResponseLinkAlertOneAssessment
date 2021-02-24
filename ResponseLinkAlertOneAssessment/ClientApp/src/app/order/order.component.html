@@ -1,0 +1,93 @@
+<h1>Shopping Cart</h1>
+<h2>Cart - {{order.items.length}} Items</h2>
+<div class="item-container row p-2" *ngFor="let item of order.items">
+  <img [src]="item.imagePath" class="item-preview col-2" />
+  <div class="col-9">
+    <div class="item-name">{{item.name}}</div>
+    <div class="item-description">{{item.description}}</div>
+    <div class="row">
+      <span class="col-8">
+        <label for="quantity" class="mr-1">Item Quantity</label>
+        <input type="number"
+               id="quantity"
+               [(ngModel)]="item.quantity"
+               class="item-quantity form-control"
+               min="0" />
+        <span class="ml-1">at ${{item.cost.toFixed(2)}} each</span>
+      </span>
+      <span class="col my-auto">
+        <span>
+          <b>Total:</b>
+          ${{(item.cost * item.quantity).toFixed(2)}}
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="col-1 p-0 m-0 remove-button-container">
+    <input type="image"
+           src="./assets/icons/trash.svg"
+           (click)="removeItem_click($event)"
+           title="Remove From Cart"
+           class="align-self-center font-weight-bold remove-button"
+           [attr.data-item-id]="item.id" value="" />
+  </div>
+</div>
+
+<h2>Customer Information</h2>
+<div class="row">
+  <span class="col">
+    <label for="firstName">First Name</label>
+    <br />
+    <input type="text"
+           class="form-control"
+           id="firstName"
+           [(ngModel)]="order.customer.firstName" />
+  </span>
+  <span class="col">
+    <label for="lastName">Last Name</label>
+    <br />
+    <input type="text"
+           class="form-control"
+           id="lastName"
+           [(ngModel)]="order.customer.lastName" />
+  </span>
+</div>
+
+
+<h2>Billing Address</h2>
+<app-address [(address)]="order.billingAddress"
+             addressType="Billing"
+             id="billingAddress"></app-address>
+
+<h2>Shipping Address</h2>
+<input type="checkbox"
+       id="sameAsBilling"
+       [(ngModel)]="order.shippingSameAsBilling"
+       class="mr-1" />
+<label for="sameAsBilling" class="form-label">Same As Billing Address</label>
+<app-address [(address)]="order.shippingAddress"
+             addressType="Shipping"
+             [disabled]="order.shippingSameAsBilling"
+             id="shippingAddress">
+</app-address>
+
+<h2>Shipping</h2>
+<div *ngFor="let shipOption of shippingOptions">
+  <div class="form-check">
+    <input type="radio"
+           name="shippingOption"
+           [id]=shipOption.id
+           [value]="shipOption.id"
+           (change)="shippingOption_change($event)"
+           class="form-check-input"
+           required />
+    <label [for]="shipOption.id" class="form-check-label">
+      ${{shipOption.cost.toFixed(2) + ' - ' + shipOption.description}}
+    </label>
+  </div>
+</div>
+
+<h2>Total ${{getTotalCost().toFixed(2)}}</h2>
+
+<br />
+<input type="button" value="Submit Order" (onclick)="submitOrder_click()" />
