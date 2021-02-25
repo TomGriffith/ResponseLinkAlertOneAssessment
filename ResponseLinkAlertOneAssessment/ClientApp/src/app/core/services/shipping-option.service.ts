@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IShippingOption } from '../models/iShippingOption.model';
 
 @Injectable()
 export class ShippingOptionService {
@@ -13,7 +14,7 @@ export class ShippingOptionService {
       { cost: 0.00, id: "1", description: "1 to 2 Weeks" },
       { cost: 5.99, id: "2", description: "Two Day" },
       { cost: 9.99, id: "3", description: "Next Day" }
-    ];
+    ] as IShippingOption[];
   }
 
   // this would normally select from a database but
@@ -25,8 +26,3 @@ export class ShippingOptionService {
   }
 }
 
-export interface IShippingOption {
-  id: string;
-  cost: number;
-  description: string;
-}

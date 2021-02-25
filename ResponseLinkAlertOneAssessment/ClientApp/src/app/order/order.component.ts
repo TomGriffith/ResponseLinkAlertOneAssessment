@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AddressComponent } from '../address/address.component';
-import { Address } from '../core/services/address.service';
-import { Customer } from '../core/services/customer.service';
+import { Address } from '../core/models/address.model';
+import { Customer } from '../core/models/customer.model';
+import { Order } from '../core/models/order.model';
 import { ItemService } from '../core/services/item.service';
-import { Order } from '../core/services/order.service';
+import { OrderService } from '../core/services/order.service';
 import { ShippingOptionService } from '../core/services/shipping-option.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class OrderComponent {
   shippingOptions = ShippingOptionService.getShippingOptions();
 
     /** order ctor */
-  constructor() {
+  constructor(private orderService: OrderService) {
       this.order.items = ItemService.getItems();
       this.order.customer = new Customer();
       this.order.billingAddress = new Address();
@@ -33,11 +33,15 @@ export class OrderComponent {
   }
 
   public shippingOption_change(e: Event) {
+    // creat shippng option object based on selection and
+    // add to the order object to update the form
     const selected = e.target as HTMLElement;
     const selectedId = selected.id;
     this.order.chosenShipping = ShippingOptionService.getShippingOption(selectedId);
   }
 
+  // calculates the total cost of all items and the
+  // shipping (this example does not include tax)
   public getTotalCost() {
     let totalCost = 0.00;
     this.order.items.forEach(i => {

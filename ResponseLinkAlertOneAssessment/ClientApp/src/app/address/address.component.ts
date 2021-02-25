@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { StateService } from '../core/services/state.service';
-import { Address } from '../core/services/address.service';
+import { Address } from '../core/models/address.model';
 
 @Component({
     selector: 'app-address',

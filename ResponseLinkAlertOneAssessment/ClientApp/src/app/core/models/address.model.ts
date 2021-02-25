@@ -1,12 +1,3 @@
-import { Injectable } from '@angular/core';
-
-@Injectable()
-export class AddressService {
-    constructor() {
-
-    }
-}
-
 export class Address {
   addr1: string;
   addr2: string;
@@ -24,4 +15,3 @@ export class Address {
     this.zipExt = '';
   }
 }
-

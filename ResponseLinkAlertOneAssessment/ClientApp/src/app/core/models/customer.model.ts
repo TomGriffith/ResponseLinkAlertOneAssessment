@@ -1,12 +1,3 @@
-import { Injectable } from '@angular/core';
-
-@Injectable()
-export class CustomerService {
-  constructor() {
-
-  }
-}
-
 export class Customer {
   firstName: string;
   lastName: string;
@@ -16,4 +7,3 @@ export class Customer {
     this.lastName = '';
   }
 }
-

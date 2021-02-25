@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IItem } from '../models/iItem.model';
 
 @Injectable({
   providedIn: 'root',
@@ -44,16 +45,7 @@ export class ItemService {
         description: "COFFIG is a caffeine free, gluten free, heart healthy alternative to coffee.  Made from 100% roasted black figs.  Experience the taste of coffee even if you have dietary restrictions!",
         imagePath: this.imagesPath + "coffig.jpg"
       }
-    ];
+    ] as IItem[];
   }
 
-}
-
-export interface IItem {
-  id: number;
-  name: string;
-  cost: number;
-  quantity: number;
-  description: string;
-  imagePath: string;
 }

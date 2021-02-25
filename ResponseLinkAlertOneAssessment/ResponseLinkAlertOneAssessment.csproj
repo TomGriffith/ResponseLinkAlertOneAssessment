@@ -28,14 +28,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\core\utilities\file.ts" />
+    <None Remove="ClientApp\src\app\core\models\address.model.ts" />
+    <None Remove="ClientApp\src\app\core\models\customer.model.ts" />
+    <None Remove="ClientApp\src\app\core\models\iItem.model.ts" />
+    <None Remove="ClientApp\src\app\core\models\iShippingOption.model.ts" />
+    <None Remove="ClientApp\src\app\core\models\order.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.component.spec.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.component.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\app\core\services\address.service.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\app\core\services\customer.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\core\services\item.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\core\services\order.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\core\services\shipping-option.service.ts" />
@@ -49,7 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\core\utilities\" />
     <Folder Include="ClientApp\src\assets\images\" />
     <Folder Include="ClientApp\src\assets\NewFolder\" />
     <Folder Include="Controllers\" />
