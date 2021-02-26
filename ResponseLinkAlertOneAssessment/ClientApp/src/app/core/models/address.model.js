@@ -8,7 +8,6 @@ var Address = /** @class */ (function () {
         this.city = '';
         this.state = '';
         this.zip = '';
-        this.zipExt = '';
     }
     return Address;
 }());

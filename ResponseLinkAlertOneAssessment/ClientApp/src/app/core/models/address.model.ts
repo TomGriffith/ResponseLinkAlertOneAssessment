@@ -4,7 +4,6 @@ export class Address {
   city: string;
   state: string;
   zip: string;
-  zipExt: string;
 
   constructor() {
     this.addr1 = '';
@@ -12,6 +11,5 @@ export class Address {
     this.city = '';
     this.state = '';
     this.zip = '';
-    this.zipExt = '';
   }
 }

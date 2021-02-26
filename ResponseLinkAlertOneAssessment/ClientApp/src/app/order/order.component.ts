@@ -54,6 +54,7 @@ export class OrderComponent {
   }
 
   public submitOrder_click() {
-    // todo - submit the order to the API and save to database
+    console.log(this.order);
+    this.orderService.createOrder(this.order);
   }
 }

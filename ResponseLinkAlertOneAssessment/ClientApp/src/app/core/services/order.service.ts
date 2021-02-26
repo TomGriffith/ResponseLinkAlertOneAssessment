@@ -1,28 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Address } from './address.service';
-import { Customer } from './customer.service';
-import { IItem, ItemService } from './item.service';
-import { IShippingOption } from './shipping-option.service';
+import { environment, ApiPaths } from '../../../environments/environment';
+import { Order } from '../models/order.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class OrderService {
-  constructor() {
+  constructor(private http: HttpClient) {
 
   }
-}
 
-export class Order {
-  customer: Customer;
-  billingAddress: Address;
-  shippingAddress: Address;
-  shippingSameAsBilling: boolean;
-  items: IItem[];
-  chosenShipping: IShippingOption;
-
-  constructor() {
-    this.customer = new Customer();
-    this.billingAddress = new Address();
-    this.shippingAddress = new Address();
+  createOrder(order: Order) {
+    //console.log(environment.apiUrl + ApiPaths.Order + '/Create');
+    //const options = { headers: { 'Content-Type': 'application/json' } };
+    //return this.http.post<Order>(environment.apiUrl +
+    //  ApiPaths.Order, order, options);
+    //JSON.stringify(order)
+    this.http.post<Order>(environment.apiUrl +
+      ApiPaths.Order, order).subscribe();
   }
 }
 
