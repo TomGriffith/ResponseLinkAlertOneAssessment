@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace ResponseLinkAlertOneAssessment.Models
 {
+    /// <summary>
+    /// A model of the Shipping Options table
+    /// </summary>
     public class ShippingOption
     {
         public int Id { get; private set; }

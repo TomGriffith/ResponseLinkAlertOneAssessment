@@ -14,6 +14,7 @@ namespace ResponseLinkAlertOneAssessment
 {
     public class Startup
     {
+        // fields used to generate the JWT object for endpoint security
         // this key would be stored elsewhere in a non-demo application
         private const string SECRET_KEY = "tUsCcTSddc8GTfdtsyWNZhkbF5r87J4JLeXTLdDyanFp9wtTxnh2Z3xwhy53VGMHNawFMZftt2JEaMUK2P36NHqq9yZJg26peZGhUzyuwhrmN2TmNpuUvSBKjsUcx8h2keM5SHWqhhFaHqDm4LQ2ffvsVASnrHPmqFheQYp5jxh4nk2fC5eK28sV2Mzpj6rG6FcQU8ELz7eCyj7Z8DgfqC8J4K8Dp4MmKbpDr8ybkJPYrsxBTBBVVqrkEhZawWYd";
         public static readonly SymmetricSecurityKey SIGNING_KEY =
@@ -35,8 +36,11 @@ namespace ResponseLinkAlertOneAssessment
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            // adds the StoreContext so it is available in the Controllers
             services.AddDbContext<StoreContext>();
 
+            // Adds JWT authentication and sets up a basic Key
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = "JwtBearer";
@@ -78,8 +82,11 @@ namespace ResponseLinkAlertOneAssessment
             }
 
             app.UseRouting();
+
+            // add these two lines to make [authorize] work on Controllers
             app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

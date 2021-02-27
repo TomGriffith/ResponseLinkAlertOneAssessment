@@ -12,6 +12,8 @@ namespace ResponseLinkAlertOneAssessment.Controllers
     public class JwtController : Controller
     {
         [HttpGet]
+        // An API endpoint for requesting a JWT object
+        // this should be called during the login proccess
         public IActionResult Jwt()
         {
             return new ObjectResult(new { token = JwtToken.GenerateJwtToken() });

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ResponseLinkAlertOneAssessment.Models
 {
+    /// <summary>
+    /// A model of the Order table
+    /// </summary>
     public class Order
     {
         [Key]

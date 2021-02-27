@@ -16,6 +16,10 @@ namespace ResponseLinkAlertOneAssessment.Authenticaton
         public static readonly SymmetricSecurityKey SIGNING_KEY =
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SECRET_KEY));
 
+        /// <summary>
+        /// Creates a new JWT Token for securing endpoints
+        /// </summary>
+        /// <returns>A string containing a new JWT token</returns>
         public static string GenerateJwtToken()
         {
             var credentials = new Microsoft.IdentityModel.Tokens.SigningCredentials
@@ -23,7 +27,9 @@ namespace ResponseLinkAlertOneAssessment.Authenticaton
 
             var header = new JwtHeader(credentials);
 
+            // set the number in AddMinutes to set session length
             DateTime expires = DateTime.UtcNow.AddMinutes(10);
+            // convert to unix seconds
             int ts = (int)(expires - new DateTime(1970, 1, 1)).TotalSeconds;
 
             var payload = new JwtPayload

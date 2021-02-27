@@ -7,6 +7,9 @@ using ResponseLinkAlertOneAssessment.Models;
 
 namespace ResponseLinkAlertOneAssessment.Data
 {
+    /// <summary>
+    /// Provides access to the database
+    /// </summary>
     public class StoreContext : DbContext
     {
         public DbSet<Customer> Customers { get; set; }

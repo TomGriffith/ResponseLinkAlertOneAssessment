@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ResponseLinkAlertOneAssessment.Models
 {
+    /// <summary>
+    /// A model of the Item table
+    /// </summary>
     public class Item
     {
         [Key]

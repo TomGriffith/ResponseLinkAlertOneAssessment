@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace ResponseLinkAlertOneAssessment.Models
 {
+    /// <summary>
+    /// A model of the Address table
+    /// </summary>
     public class Address
     {
         public int Id { get; private set; }

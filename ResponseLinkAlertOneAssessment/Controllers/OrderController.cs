@@ -35,6 +35,8 @@ namespace ResponseLinkAlertOneAssessment.Controllers
         // OrderController/Create
         [HttpPost]
         [Authorize]
+        // takes an order object and inserts it into the database
+        // must have a JWT or will return HTTP 401 error
         public async Task<ActionResult<Order>> CreateOrder(Order order)
         {
             // this will create duplicates in all tables since these objects are not
