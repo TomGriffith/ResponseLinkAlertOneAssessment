@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment, ApiPaths } from '../../../environments/environment';
 import { Order } from '../models/order.model';
@@ -9,14 +9,12 @@ export class OrderService {
 
   }
 
+  // posts the order to the API for database storage
   createOrder(order: Order) {
-    //console.log(environment.apiUrl + ApiPaths.Order + '/Create');
-    //const options = { headers: { 'Content-Type': 'application/json' } };
-    //return this.http.post<Order>(environment.apiUrl +
-    //  ApiPaths.Order, order, options);
-    //JSON.stringify(order)
-    this.http.post<Order>(environment.apiUrl +
-      ApiPaths.Order, order).subscribe();
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('jwt'));
+    return this.http.post<Order>(environment.apiUrl +
+      ApiPaths.Order, order, { headers: headers });
   }
 }
 

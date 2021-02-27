@@ -54,7 +54,27 @@ export class OrderComponent {
   }
 
   public submitOrder_click() {
-    console.log(this.order);
-    this.orderService.createOrder(this.order);
+    const resultsSpan = document.getElementById('orderResults');
+
+    // remove classes from success/failure text
+    // to allow multiple clicks for testing jwt.
+    // normally this would not be needed as it should
+    // route to another page for order results
+    resultsSpan.classList.remove('text-success');
+    resultsSpan.classList.remove('text-danger');
+
+    this.orderService.createOrder(this.order)
+      .subscribe(data => {
+        resultsSpan.innerText = "Success!";
+        resultsSpan.classList.add('text-success');
+      },
+        error => {
+          if (error['status'] === 401) {
+            resultsSpan.innerText = 'You must log in to submit an order';
+          } else {
+            resultsSpan.innerText = "An error occurred. Please try again later.";
+          }
+          resultsSpan.classList.add('text-danger');
+        });
   }
 }

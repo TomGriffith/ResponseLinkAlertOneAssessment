@@ -11,6 +11,7 @@ exports.environment = {
 var ApiPaths;
 (function (ApiPaths) {
     ApiPaths["Order"] = "/Order";
+    ApiPaths["Jwt"] = "/Jwt";
 })(ApiPaths = exports.ApiPaths || (exports.ApiPaths = {}));
 /*
  * In development mode, to ignore zone related error stack frames such as

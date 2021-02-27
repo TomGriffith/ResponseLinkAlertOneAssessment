@@ -8,7 +8,8 @@ export const environment = {
 };
 
 export enum ApiPaths {
-  Order = '/Order'
+  Order = '/Order',
+  Jwt = '/Jwt'
 }
 
 

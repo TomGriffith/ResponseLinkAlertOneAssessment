@@ -6,12 +6,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using ResponseLinkAlertOneAssessment.Data;
+using System.Text;
 
 namespace ResponseLinkAlertOneAssessment
 {
     public class Startup
     {
+        // this key would be stored elsewhere in a non-demo application
+        private const string SECRET_KEY = "tUsCcTSddc8GTfdtsyWNZhkbF5r87J4JLeXTLdDyanFp9wtTxnh2Z3xwhy53VGMHNawFMZftt2JEaMUK2P36NHqq9yZJg26peZGhUzyuwhrmN2TmNpuUvSBKjsUcx8h2keM5SHWqhhFaHqDm4LQ2ffvsVASnrHPmqFheQYp5jxh4nk2fC5eK28sV2Mzpj6rG6FcQU8ELz7eCyj7Z8DgfqC8J4K8Dp4MmKbpDr8ybkJPYrsxBTBBVVqrkEhZawWYd";
+        public static readonly SymmetricSecurityKey SIGNING_KEY =
+            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SECRET_KEY));
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,6 +36,24 @@ namespace ResponseLinkAlertOneAssessment
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddDbContext<StoreContext>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "JwtBearer";
+                options.DefaultChallengeScheme = "JwtBearer";
+            })
+            .AddJwtBearer("JwtBearer", jwtOptions =>
+            {
+                jwtOptions.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = SIGNING_KEY,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = "https://localhost:44321",
+                    ValidAudience = "https://localhost:44321",
+                    ValidateLifetime = true
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +78,8 @@ namespace ResponseLinkAlertOneAssessment
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -73,6 +99,8 @@ namespace ResponseLinkAlertOneAssessment
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+
         }
     }
 }

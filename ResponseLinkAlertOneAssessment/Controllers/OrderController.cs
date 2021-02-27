@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ResponseLinkAlertOneAssessment.Data;
@@ -33,6 +34,7 @@ namespace ResponseLinkAlertOneAssessment.Controllers
 
         // OrderController/Create
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Order>> CreateOrder(Order order)
         {
             // this will create duplicates in all tables since these objects are not
